@@ -1,16 +1,28 @@
 require('normalize.css/normalize.css');
-require('styles/App.css');
-
+require('styles/Main.scss');
+import { Switch, Route } from 'react-router-dom'
 import React from 'react';
-
-let yeomanImage = require('../images/yeoman.png');
+import RegisterComponent from './Register';
+import LoginComponent from './Login';
+import HeaderComponent from './Header';
+import DashboardComponent from './Dashboard';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class AppComponent extends React.Component {
   render() {
+
     return (
-      <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+      <div >
+        <MuiThemeProvider>
+          <div>
+            <HeaderComponent />
+            <Switch>
+              <Route exact path='/' component ={DashboardComponent} />
+              <Route exact path='/login' component ={LoginComponent} />
+              <Route exact path='/register' component ={RegisterComponent} />
+            </Switch>
+          </div>
+        </MuiThemeProvider>
       </div>
     );
   }
